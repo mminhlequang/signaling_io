@@ -32,7 +32,7 @@ io.sockets.on("connection", (socket) => {
   })
 })
 
-app.start(3737, () => console.log('App listening on port 3737!'))
+app.start(3000, () => console.log('App listening on port 3000!'))
 
 function _intializeSocket (socket) {
   new (require('./signaling_socket/socket_control'))(socket) 
