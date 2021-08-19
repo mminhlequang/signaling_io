@@ -71,7 +71,7 @@ class RoomSignalingManager {
       this.getRoom(data.room).leave(socket)
       this.io.to(this.getRoom(data.room).id).emit(constants.emitBye, { status: true, data: {socketId : socket.id} }) 
       if(this.getRoom(data.room).sockets.length == 0)
-        this.rooms = this.rooms.filter(i => i != socket);
+        this.rooms = this.rooms.filter(i => i.id != data.room);
     }
   }
   getRoom(id){
