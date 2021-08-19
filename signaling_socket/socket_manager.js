@@ -61,7 +61,7 @@ class RoomSignalingManager {
       this.print('candidate', {socketId: socket.id})
       this.getRoom(data.room)
         .socket(data.to)
-        .emit(constants.emitCandidate, { status: true, data: {socketId: data.to, candidate : data.candidate} })
+        .emit(constants.emitCandidate, { status: true, data: {socketId: socket.id, candidate : data.candidate} })
     }
   }
   // 'room': id
