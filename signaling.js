@@ -1,22 +1,17 @@
+'use strict';
 
-const express = require('express')
-const http = require('http')
+const express = require('express');
+const socketIO = require('socket.io');
 const RoomSignalingManager = require('./signaling_socket/socket_manager')
 
-const app = express()
+const PORT = process.env.PORT || 3000;
+const INDEX = '/index.html';
 
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,accesstoken");
-  next();
-});
-
-const httpServer = http.createServer(app)
-const io = require('socket.io').listen(httpServer)
-app.start = app.listen = function () {
-  return httpServer.listen.apply(httpServer, arguments)
-}
+const io = socketIO(server);
 
 //Setup manager in app
 io.signalingManager = new RoomSignalingManager(io)
@@ -31,8 +26,6 @@ io.sockets.on("connection", (socket) => {
     console.log(`On Disconnect ${socket.id}`)
   })
 })
-
-app.start(3000, () => console.log('App listening on port 3000!'))
 
 function _intializeSocket (socket) {
   new (require('./signaling_socket/socket_control'))(socket) 
