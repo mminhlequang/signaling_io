@@ -5,13 +5,14 @@
       let socket = io();
       let el;
 
-      socket.on('time', (timeString) => {
-        el = document.getElementById('server-time');
-        el.innerHTML = 'Server time: ' + timeString;
+      socket.on('signaling_logs', (count) => {
+        el = document.getElementById('id-count');
+        el.innerHTML = 'Total connections: ' + count;
       });
     </script>
   </head>
   <body>
-    <p id="server-time"></p>
+    <h5>Signaling logs:</h5>
+    <p id="id-count"></p>
   </body>
 </html>
