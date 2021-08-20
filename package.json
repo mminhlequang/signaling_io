@@ -1,20 +1,19 @@
 {
-  "name": "signaling_io",
+  "name": "websockets-socket.io",
   "version": "1.0.0",
-  "description": "Private project for demo...",
-  "main": "signaling.js",
-  "scripts": {
-    "start": "node signaling.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "engines": {
-    "node": "14.x"
+    "node": "12.x"
   },
-  "author": "MinhMinh",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21",
     "express": "^4.17.1",
-    "socket.io": "^2.4.1"
+    "socket.io": "^2.3.0"
   }
 }
